@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://ch1417i0fmo0f"]
+
+[ext_resource type="Texture2D" uid="uid://dou5gvali1qoh" path="res://assets/player/Cyborg_idle.png" id="1_4flbx"]
+[ext_resource type="Script" uid="uid://0da0mi3fst2x" path="res://player.gd" id="1_onrkg"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqtel"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sweqy"]
+atlas = ExtResource("1_4flbx")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6cdfc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_onrkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqtel")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sweqy")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4flbx"]
+size = Vector2(27, 76)
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1180915503]
+script = ExtResource("1_onrkg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1071242999]
+position = Vector2(27.5, 27.5)
+scale = Vector2(2.145833, 2.145833)
+sprite_frames = SubResource("SpriteFrames_6cdfc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=248639535]
+position = Vector2(8.000002, 41)
+shape = SubResource("RectangleShape2D_4flbx")
