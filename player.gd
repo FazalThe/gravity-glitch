@@ -15,22 +15,21 @@ var target_rotation: float = 0.0
 func _physics_process(delta: float) -> void:
 	# Change gravity direction
 	
-	if Input.is_action_just_pressed("ui_up") || Input.is_action_just_pressed("ui_down") || Input.is_action_just_pressed("ui_left") || Input.is_action_just_pressed("ui_right"):
-		var toMove: Vector2 = position.direction_to(pivot.position) * position.distance_to(pivot.position)
+
 		
-		if Input.is_action_just_pressed("ui_up"):
-			gravity_dir = Vector2.UP
-		elif Input.is_action_just_pressed("ui_down"):
-			gravity_dir = Vector2.DOWN
-		elif Input.is_action_just_pressed("ui_left"):
-			gravity_dir = Vector2.LEFT
-		elif Input.is_action_just_pressed("ui_right"):
-			gravity_dir = Vector2.RIGHT
-			
-		target_rotation = gravity_dir.angle() - PI / 2.0
+	if Input.is_action_just_pressed("ui_up"):
 		pivot.position = position
-		tile.position += toMove
-		pivot.rotation = lerp_angle(pivot.rotation, target_rotation,rotation_speed * delta )
+		target_rotation = pivot.rotation + PI
+	elif Input.is_action_just_pressed("ui_left"):
+		target_rotation = pivot.rotation - PI / 2.0
+	elif Input.is_action_just_pressed("ui_right"):
+		target_rotation = pivot.rotation + PI / 2.0
+
+	pivot.rotation = lerp_angle(
+		pivot.rotation,
+		target_rotation,
+		rotation_speed * delta
+	)
 
 	# Apply gravity
 	velocity += gravity_dir * gravity_strength * delta
